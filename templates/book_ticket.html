@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+
+{% block title %}Book Ticket - Museum Booking{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-center align-items-center" style="min-height: 100vh; background-color: #f8f9fa;">
+    <div class="card shadow-lg p-4" style="width: 100%; max-width: 400px; border-radius: 15px; background-color: #ffffff;">
+        <div class="card-header bg-success text-white text-center" style="border-radius: 15px 15px 0 0;">
+            <h3 class="mb-0">🎟️ Museum Ticket Booking</h3>
+        </div>
+
+        <div class="card-body">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }} text-center" role="alert">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+
+            <form id="ticketForm" action="{{ url_for('book_ticket') }}" method="POST">
+                <div id="step1">
+                    <div class="form-group">
+                        <label for="group_size" class="fw-bold text-dark">👨‍👩‍👧‍👦 Number of Visitors</label>
+                        <input 
+                            type="number" 
+                            id="group_size" 
+                            name="group_size" 
+                            class="form-control border border-primary shadow-sm"
+                            placeholder="Enter total visitors"
+                            min="1"
+                            required>
+                    </div>
+                    <div class="d-grid gap-2 mt-4">
+                        <button type="button" id="startBooking" class="btn btn-primary w-100 shadow-sm">Start Booking</button>
+                    </div>
+                </div>
+
+                <div id="step2" style="display: none;">
+                    <h5 class="text-dark text-center">👤 Visitor <span id="visitorNumber">1</span></h5>
+                    <label class="fw-bold text-dark">Name</label>
+                    <input type="text" id="name" class="form-control border border-primary shadow-sm" name="name" required>
+                    
+                    <label class="fw-bold text-dark mt-2">Age</label>
+                    <input type="number" id="age" class="form-control border border-primary shadow-sm" name="age" required>
+
+                    <div class="d-grid gap-2 mt-4">
+                        <button type="button" id="nextBtn" class="btn btn-primary w-100 shadow-sm">Next</button>
+                        <button type="submit" id="submitBtn" class="btn btn-success w-100 shadow-sm" style="display: none;">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="text-center mt-3">
+            <p class="text-muted">
+                Need help? 
+                <a href="#" class="text-primary fw-bold">Contact Us</a>
+            </p>
+        </div>
+    </div>
+</div>
+
+<script>
+    let totalVisitors = 0;
+    let currentVisitor = 1;
+    let formData = [];
+
+    document.getElementById("startBooking").addEventListener("click", function() {
+        totalVisitors = parseInt(document.getElementById("group_size").value);
+        if (isNaN(totalVisitors) || totalVisitors < 1) {
+            alert("Please enter a valid number of visitors.");
+            return;
+        }
+
+        document.getElementById("step1").style.display = "none";
+        document.getElementById("step2").style.display = "block";
+        updateForm();
+    });
+
+    function updateForm() {
+        document.getElementById("visitorNumber").textContent = currentVisitor;
+        document.getElementById("name").value = formData[currentVisitor - 1]?.name || "";
+        document.getElementById("age").value = formData[currentVisitor - 1]?.age || "";
+
+        if (currentVisitor === totalVisitors) {
+            document.getElementById("nextBtn").style.display = "none";
+            document.getElementById("submitBtn").style.display = "block";
+        } else {
+            document.getElementById("nextBtn").style.display = "block";
+            document.getElementById("submitBtn").style.display = "none";
+        }
+    }
+
+    document.getElementById("nextBtn").addEventListener("click", function() {
+        let name = document.getElementById("name").value.trim();
+        let age = document.getElementById("age").value.trim();
+
+        if (name === "" || age === "") {
+            alert("Please fill in all fields.");
+            return;
+        }
+
+        formData[currentVisitor - 1] = { name, age };
+        
+        if (currentVisitor < totalVisitors) {
+            currentVisitor++;
+            updateForm();
+        }
+    });
+</script>
+{% endblock %}

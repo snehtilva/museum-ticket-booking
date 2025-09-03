@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}Our Services{% endblock %}
+
+{% block content %}
+<div class="container mt-4 bg-[#F4EFE6] rounded-xl p-5 shadow-md">
+    <h1 class="text-center text-[#019863] text-3xl font-bold">Our Services</h1>
+    <p class="text-center text-[#333] font-semibold leading-relaxed">We offer a wide range of services to meet your needs. Here are some of the services we provide:</p>
+    
+    <div class="row mt-3">
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-lg transform transition-transform duration-300 hover:scale-105 relative">
+                <img src="https://img.freepik.com/premium-vector/online-travel-ticket-store-through-transportation-journey-booking-hand-drawn-illustration_2175-10329.jpg?semt=ais_hybrid" class="card-img-top rounded-t-xl" alt="Service 1">
+                <div class="card-body bg-white">
+                    <h5 class="card-title text-[#00BFA5] font-bold">Ticket Booking</h5>
+                    <p class="card-text text-[#666]">Book your museum ticket from your comfort zone without standing in long queues.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-lg transform transition-transform duration-300 hover:scale-105 relative">
+                <img src="https://livefromalounge.com/wp-content/uploads/2016/07/image-20.png" class="card-img-top rounded-t-xl" alt="Service 2">
+                <div class="card-body bg-white">
+                    <h5 class="card-title text-[#00BFA5] font-bold">Ticket Cancellation</h5>
+                    <p class="card-text text-[#666]">Changed plans? No worries! We offer ticket cancellation too.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-lg transform transition-transform duration-300 hover:scale-105 relative">
+                <img src="https://victorianweb.org/victorian/art/architecture/nhm/30.jpg" class="card-img-top rounded-t-xl" alt="Service 3">
+                <div class="card-body bg-white">
+                    <h5 class="card-title text-[#00BFA5] font-bold">Museum Interior View</h5>
+                    <p class="card-text text-[#666]">Take a glimpse of the museum’s interior before your visit!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Call to Action -->
+    <div class="text-center mt-4">
+        <a href="{{ url_for('contact') }}" class="btn btn-success transform transition-transform duration-300 hover:scale-105">Contact Us for More Information</a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block title %}Contact Us - Ticket Booking System{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-center align-items-center" style="height: 100vh; background-color: #f8f9fa;">
+    <div class="card shadow-lg p-4" style="width: 100%; max-width: 400px; border-radius: 15px; background-color: #ffffff;">
+        <div class="card-header bg-gradient-to-r from-[#019863] via-[#00BFA5] to-[#00E676] text-white text-center" style="border-radius: 15px 15px 0 0;">
+            <h3 class="mb-0">📞 Contact Us</h3>
+        </div>
+
+        <div class="card-body">
+            <form action="{{ url_for('contact') }}" method="POST">
+                <!-- Name Section -->
+                <div class="form-group">
+                    <label for="name" class="fw-bold text-dark">👤 Name</label>
+                    <input 
+                        type="text" 
+                        id="name" 
+                        name="name" 
+                        class="form-control border border-primary shadow-sm"
+                        placeholder="Enter your full name"
+                        required>
+                </div>
+
+                <!-- Email Section -->
+                <div class="form-group mt-3">
+                    <label for="email" class="fw-bold text-dark">📧 Email</label>
+                    <input 
+                        type="email" 
+                        id="email" 
+                        name="email" 
+                        class="form-control border border-primary shadow-sm"
+                        placeholder="Enter your email"
+                        required>
+                </div>
+
+                <!-- Message Section -->
+                <div class="form-group mt-3">
+                    <label for="message" class="fw-bold text-dark">📝 Message</label>
+                    <textarea 
+                        id="message" 
+                        name="message" 
+                        class="form-control border border-primary shadow-sm"
+                        placeholder="Write your message here..." 
+                        rows="5" 
+                        required></textarea>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="d-grid gap-2 mt-4">
+                    <button type="submit" class="btn btn-success w-100 shadow-sm">Send Message</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Response Note -->
+        <div class="text-center mt-3">
+            <p class="text-muted">
+                We will get back to you within 24 hours!
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}

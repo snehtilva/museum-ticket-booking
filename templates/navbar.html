@@ -1,0 +1,81 @@
+<header class="sticky top-0 z-50 flex items-center justify-between border-b border-[#E9DFCE] bg-gradient-to-r from-[#019863] via-[#00BFA5] to-[#00E676] px-10 py-3 shadow-md">
+    <div class="flex items-center gap-4 text-white">
+        <div class="size-5">
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 4H17.3334V17.3334H30.6666V30.6666H44V44H4V4Z" fill="currentColor"></path>
+            </svg>
+        </div>
+        
+        <div>
+            <h2 class="text-white text-lg font-bold tracking-wide">Laxmi Vilas Palace</h2>
+            <p class="text-[#FFD700] text-xs font-medium opacity-80"> (Ticket Booking) </p>
+        </div>
+    </div>
+    
+
+    <nav class="flex flex-1 justify-end gap-6">
+        <div class="flex items-center gap-6">
+            <a href="{{ url_for('home') }}" class="nav-link text-white text-sm font-medium">Home</a>
+            <a href="{{ url_for('about') }}" class="nav-link text-white text-sm font-medium">About</a>
+            <a href="{{ url_for('services') }}" class="nav-link text-white text-sm font-medium">Services</a>
+            <a href="{{ url_for('chatbot') }}" class="nav-link text-white text-sm font-medium">Chatbot</a>
+            <a href="{{ url_for('view') }}" class="nav-link text-white text-sm font-medium">View</a>
+
+            {% if 'user_id' in session %}
+                <a href="{{ url_for('my_tickets') }}" class="nav-link text-white text-sm font-medium">My Tickets</a>
+                <a href="{{ url_for('logout') }}" class="nav-link text-white text-sm font-medium">Logout</a>
+            {% else %}
+                <a href="{{ url_for('login') }}" class="nav-link text-white text-sm font-medium">Login</a>
+                <a href="{{ url_for('register') }}" class="nav-link text-white text-sm font-medium">Register</a>
+            {% endif %}
+        </div>
+
+        <a href="{{ url_for('book_ticket') }}" 
+           class="book-tickets-btn flex min-w-[100px] items-center justify-center rounded-full h-10 px-4 text-sm font-bold shadow-md">
+            🎟️ Book Tickets
+        </a>
+    </nav>
+</header>
+
+<style>
+    /* General Navigation Links */
+    .nav-link {
+        position: relative;
+        overflow: hidden;
+        transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+    .nav-link::before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        width: 0;
+        height: 2px;
+        background-color: #FFD700; /* Elegant gold accent */
+        transition: width 0.3s ease, left 0.3s ease;
+    }
+
+    .nav-link:hover {
+        color: #FFD700;
+        transform: scale(1.1); /* Light zoom effect */
+    }
+
+    .nav-link:hover::before {
+        width: 100%;
+        left: 0;
+    }
+
+    /* Book Tickets Button */
+    .book-tickets-btn {
+        background: linear-gradient(135deg, #FFD700 0%, #FFF3CD 100%);
+        color: #019863;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .book-tickets-btn:hover {
+        transform: scale(1.1);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    }
+</style>

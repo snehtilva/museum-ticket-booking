@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Logged Out - Ticket Booking System{% endblock %}
+
+{% block content %}
+<div class="container text-center my-5">
+    <div class="alert alert-success py-4" style="background: linear-gradient(to right, #019863, #00BFA5, #00E676); border-radius: 15px; color: #fff;">
+        <h1 class="display-4">✅ Successfully Logged Out!</h1>
+        <p class="lead">Thank you for visiting. We hope to see you again soon. 😊</p>
+        <a href="{{ url_for('login') }}" class="btn btn-primary mt-3" style="background-color: #FFD700; border: none; color: #333; border-radius: 8px; transition: transform 0.3s ease;">
+            🔐 Login Again
+        </a>
+    </div>
+</div>
+{% endblock %}

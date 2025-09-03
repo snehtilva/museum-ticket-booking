@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block title %}My Tickets - Ticket Booking System{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2 class="text-center my-4">🎟️ My Tickets</h2>
+
+    {% if tickets %}
+    <div class="row">
+        {% for ticket in tickets %}
+        <div class="col-md-4">
+            <div class="card shadow-lg border-0 mb-4" style="background: linear-gradient(to right, #019863, #00BFA5, #00E676); color: #fff;">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold">{{ ticket.name }}</h5>
+                    <p class="card-text">🧑 Age: {{ ticket.age }}</p>
+
+                    <div class="d-flex justify-content-end">
+                        <a href="#" class="btn btn-outline-danger btn-sm" 
+                           data-toggle="modal" 
+                           data-target="#deleteModal{{ ticket.id }}">
+                            ❌ Delete
+                        </a>
+                    </div>
+
+                    <!-- Modal for Ticket Deletion -->
+                    <div class="modal fade" id="deleteModal{{ ticket.id }}" 
+                         tabindex="-1" role="dialog" 
+                         aria-labelledby="exampleModalLabel" 
+                         aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header bg-danger text-white">
+                                    <h5 class="modal-title" id="exampleModalLabel">⚠️ Confirm Deletion</h5>
+                                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+
+                                <div class="modal-body">
+                                    Are you sure you want to delete <strong>{{ ticket.name }}</strong>'s ticket?
+                                </div>
+
+                                <div class="modal-footer">
+                                    <form action="{{ url_for('delete_ticket', ticket_id=ticket.id) }}" method="POST">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                        <button type="submit" class="btn btn-danger">Yes, Delete</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>  
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    {% else %}
+    <div class="alert alert-warning text-center">
+        <strong>No tickets found!</strong> Book your first ticket now.
+        <br><br>
+        <a href="{{ url_for('book_ticket') }}" class="btn btn-success btn-sm">🎫 Book a Ticket</a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+
+{% block title %}Explore Museum Items{% endblock %}
+
+{% block content %}
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+        background: linear-gradient(to right, #019863, #00BFA5, #00E676);
+    }
+    h1 {
+        text-align: center;
+        margin-bottom: 30px;
+        color: #fff;
+        background: rgba(0, 0, 0, 0.7);
+        padding: 15px 0;
+        border-radius: 12px;
+        font-size: 36px;
+        letter-spacing: 2px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+    .gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+    }
+    .gallery-item {
+        text-align: center;
+        padding: 10px;
+        background: #F4EFE6;
+        border: 3px solid rgba(0, 0, 0, 0.5);
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .gallery-item:hover {
+        transform: translateY(-5px) scale(1.05);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    }
+    .gallery-item img {
+        width: 100%;
+        height: 250px;
+        object-fit: contain;
+        transition: transform 0.3s ease;
+    }
+    .gallery-item:hover img {
+        transform: scale(1.08);
+    }
+    .gallery-item h2 {
+        margin-top: 10px;
+        font-size: 18px;
+        color: #019863;
+    }
+</style>
+
+<h1>Explore Museum Items</h1>
+
+<div class="gallery">
+    <div class="gallery-item">
+        <h2>Armour room</h2>
+        <img src="/static/images/13-Laxmi-Vilas-Palace-armory-room.jpg" alt="Armour room">
+    </div>
+    <div class="gallery-item">
+        <h2>Car parking</h2>
+        <img src="/static/images/Photo14.jpg" alt="Car parking">
+    </div>
+    <div class="gallery-item">
+        <h2>pool area</h2>
+        <img src="/static/images/Photo12.jpg" alt="pool area">
+    </div>
+    <div class="gallery-item">
+        <h2>Relax room</h2>
+        <img src="/static/images/Photo2.jpg" alt="Relax room">
+    </div>
+    <div class="gallery-item">
+        <h2>Dining hall</h2>
+        <img src="/static/images/Photo3.jpg" alt="Dining hall">
+    </div>
+    <div class="gallery-item">
+        <h2>Lion Skull Sculpture</h2>
+        <img src="/static/images/Lion Skull.png" alt="Lion Skull">
+    </div>
+    <div class="gallery-item">
+        <h2>Court</h2>
+        <img src="/static/images/Photo4.jpg" alt="Court">
+    </div>
+    <div class="gallery-item">
+        <h2>Maharani kaksh</h2>
+        <img src="/static/images/Photo5.jpg" alt="Maharani kaksh">
+    </div>
+    <div class="gallery-item">
+        <h2>sabhagruh</h2>
+        <img src="/static/images/Photo6.jpg" alt="sabhagruh">
+    </div>
+    <div class="gallery-item">
+        <h2>Interior</h2>
+        <img src="/static/images/Photo7.jpg" alt="Interior">
+    </div>
+    <div class="gallery-item">
+        <h2>Fountain</h2>
+        <img src="/static/images/Photo8.jpg" alt="Fountain">
+    </div>
+    <div class="gallery-item">
+        <h2>Guest room</h2>
+        <img src="/static/images/Photo9.jpg" alt="Guest room">
+    </div>
+    <div class="gallery-item">
+        <h2>Normal room</h2>
+        <img src="/static/images/Photo10.jpg" alt="Normal room">
+    </div>
+    <div class="gallery-item">
+        <h2>darbar-kaksh</h2>
+        <img src="/static/images/Photo11.jpg" alt="darbar-kaksh">
+    </div>
+    <div class="gallery-item">
+        <h2>Palace view</h2>
+        <img src="/static/images/Photo13.jpg" alt="Palace view">
+    </div>
+</div>
+{% endblock %}

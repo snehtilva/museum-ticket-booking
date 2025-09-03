@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="{{ get_locale() }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Ticket Booking System{% endblock %}</title>
+    
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+    <style>
+        /* Background with softer gradient */
+        body {
+            background: linear-gradient(135deg, #018D66, #00A78D, #00D47C);
+            background-attachment: fixed;
+            color: #F4EFE6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            background: #FFFFFF;
+            border: none;
+            box-shadow: none;
+            border-radius: 0;
+            padding: 30px;
+            width: 100%;
+            max-width: 100%;
+            margin: 0;
+        }
+
+        .card {
+            border: none; 
+            background: #F4EFE6;
+            border-radius: 15px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        footer {
+            background: rgba(0, 0, 0, 0.85);
+            color: #F4EFE6;
+            padding: 15px 0;
+            margin-top: auto;
+        }
+
+        a {
+            color: #FFD700;
+        }
+
+        a:hover {
+            transform: scale(1.05);
+            color: #FFF3CD;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .btn-custom {
+            background: linear-gradient(135deg, #00BFA5, #019863);
+            border: none;
+            color: #FFFFFF;
+            padding: 10px 20px;
+            border-radius: 25px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .btn-custom:hover {
+            transform: scale(1.1);
+            background: #00E676;
+            color: #FFFFFF;
+        }
+
+        /* ================= Loading Spinner Styles ================= */
+        #loading-spinner {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: rgba(255, 255, 255, 0.8); /* Soft blur */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        #loading-spinner .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #00BFA5;
+            border-top: 5px solid #FFD700; /* Gold accent */
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Show spinner while loading */
+        body.loading #loading-spinner {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* ======== REMOVE UNDERLINE FROM NAVBAR LINKS ======== */
+        a:focus,
+        a:active {
+            outline: none;
+            text-decoration: none;
+            box-shadow: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Loading Spinner -->
+    <div id="loading-spinner">
+        <div class="spinner"></div>
+    </div>
+
+    {% include 'navbar.html' %}
+
+    <main class="container">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer class="text-center">
+        <p>&copy; 2024 My App. All rights reserved.</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+    <!-- Loading Spinner Script -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const links = document.querySelectorAll("a[href]");
+            
+            links.forEach(link => {
+                link.addEventListener("click", function (event) {
+                    const target = link.getAttribute("target");
+
+                    // Ignore links that open in new tabs or internal anchors
+                    if (!target && !link.href.includes("#")) {
+                        document.body.classList.add("loading");  // Show spinner
+                    }
+                });
+            });
+
+            window.addEventListener("load", function () {
+                document.body.classList.remove("loading");  // Hide spinner when fully loaded
+            });
+        });
+    </script>
+</body>
+</html>

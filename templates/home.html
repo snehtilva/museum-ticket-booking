@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Museum Ticket Booking{% endblock %}
+
+{% block content %}
+<div class="relative flex size-full min-h-screen flex-col bg-[#E9DFCE] group/design-root overflow-x-hidden"
+     style='font-family: "Plus Jakarta Sans", "Noto Sans", sans-serif;'>
+
+    <!-- Hero Section -->
+    <div class="px-40 flex flex-1 justify-center py-5">
+        <div class="layout-content-container flex flex-col max-w-[960px] flex-1">
+            <div class="@container">
+                <div class="@[480px]:p-4">
+                    <div class="flex min-h-[480px] flex-col gap-6 bg-cover bg-center bg-no-repeat 
+                                @[480px]:gap-8 @[480px]:rounded-xl items-center justify-center p-4 shadow-xl border border-[#00BFA5] rounded-lg"
+                         style='background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.6)), 
+                               url("https://assets-news.housing.com/news/wp-content/uploads/2020/12/16191249/Vadodara%E2%80%99s-lavish-Lakshmi-Vilas-Palace-could-be-worth-over-Rs-24000-crores-FB-1200x700-compressed.jpg");'>
+
+                        <div class="flex flex-col gap-2 text-center text-white">
+                            <h1 class="text-5xl font-black drop-shadow-md">Welcome to Museum Ticket Booking System!</h1>
+                            <h2 class="text-md opacity-90">Your one-stop solution for all your ticket booking needs.</h2>
+                        </div>
+
+                        <!-- Book Tickets Button with Zoom Effect -->
+                        <a href="{{ url_for('book_ticket') }}"
+                            class="book-tickets-btn flex min-w-[100px] items-center justify-center rounded-full h-10 px-4 bg-[#FFD700] text-[#019863] text-sm font-bold transform transition-transform duration-300 hover:scale-105 hover:bg-[#FFEA00] shadow-md">
+                            🎟️ Book Tickets
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- New Buttons Section -->
+            <div class="flex justify-center gap-4 mt-6">
+                <a href="{{ url_for('about') }}"
+                   class="flex min-w-[100px] items-center justify-center rounded-full h-10 px-4 bg-[#00BFA5] text-white text-sm font-bold transform transition-transform duration-300 hover:scale-105 hover:bg-[#00E676] shadow-md">
+                     About Us
+                </a>
+
+                <a href="{{ url_for('services') }}"
+                   class="flex min-w-[100px] items-center justify-center rounded-full h-10 px-4 bg-[#019863] text-white text-sm font-bold transform transition-transform duration-300 hover:scale-105 hover:bg-[#00BFA5] shadow-md">
+                    🛠️ Our Services
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Zoom Effect CSS -->
+<style>
+    .book-tickets-btn {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .book-tickets-btn::before {
+        content: "";
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: #FFD700;
+        transform: scale(1);
+        transition: transform 0.3s ease;
+        z-index: -1;
+    }
+
+    .book-tickets-btn:hover::before {
+        transform: scale(1.1);  /* Light zoom effect */
+    }
+</style>
+
+{% endblock %}
